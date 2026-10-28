@@ -1,0 +1,287 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Global Olympics Analytics Dashboard</title>
+
+    <!-- Tableau Embedding API -->
+    <script
+        type="module"
+        src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js">
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1120;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #111c35, #173b5e);
+            padding: 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid #294566;
+        }
+
+        header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #b8c9df;
+            font-size: 15px;
+        }
+
+        .intro {
+            max-width: 1000px;
+            margin: 25px auto 10px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #67d5d0;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #b8c9df;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 25px 15px;
+        }
+
+        .stat-card {
+            background: #17243a;
+            border: 1px solid #2a405e;
+            border-radius: 12px;
+            padding: 20px 24px;
+            min-width: 200px;
+            flex: 1;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #67d5d0;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card p {
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            padding: 20px 22px 12px;
+            font-size: 23px;
+            text-align: center;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #b8c9df;
+            padding: 0 15px 20px;
+            font-size: 14px;
+        }
+
+        .dashboard-container {
+            margin: 0 18px 30px;
+            padding: 12px;
+            background: #111c30;
+            border: 1px solid #2a405e;
+            border-radius: 12px;
+        }
+
+        tableau-viz {
+            display: block;
+            width: 100%;
+            height: 800px;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            padding: 10px 22px 30px;
+        }
+
+        .highlight-card {
+            background: #17243a;
+            border: 1px solid #2a405e;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .highlight-card h3 {
+            color: #67d5d0;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .highlight-card p {
+            color: #b8c9df;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            color: #8fa3bd;
+            font-size: 13px;
+            border-top: 1px solid #26364e;
+        }
+
+        footer a {
+            color: #67d5d0;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            .stat-card {
+                max-width: 100%;
+                min-width: 100%;
+            }
+
+            .dashboard-container {
+                margin: 0 8px 20px;
+                padding: 5px;
+            }
+
+            tableau-viz {
+                height: 650px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Global Olympics Analytics</h1>
+        <p>Exploring Olympic Performance Through Data Visualization</p>
+    </header>
+
+    <section class="intro">
+        <h2>Olympic Games Performance Analysis</h2>
+        <p>
+            Explore Olympic athletes, medal achievements, sports disciplines,
+            participating nations, and competition results through an
+            interactive Tableau dashboard.
+        </p>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <h3>ANALYSIS FOCUS</h3>
+            <p>Medal Performance</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>DATA EXPLORATION</h3>
+            <p>Countries & Athletes</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>VISUALIZATION</h3>
+            <p>Interactive Dashboard</p>
+        </div>
+    </section>
+
+    <h2 class="section-title">Interactive Tableau Dashboard</h2>
+
+    <p class="section-description">
+        Use the dashboard controls and filters to explore Olympic results.
+    </p>
+
+    <div class="dashboard-container">
+
+        <tableau-viz
+            id="olympicsDashboard"
+            src="https://public.tableau.com/views/OlympicsGamesAnalytics_17931242664570/OlyampicPerformanceDashboard"
+            toolbar="bottom"
+            hide-tabs>
+        </tableau-viz>
+
+    </div>
+
+    <h2 class="section-title">What This Project Explores</h2>
+
+    <section class="highlights">
+        <div class="highlight-card">
+            <h3>Medal Analysis</h3>
+            <p>
+                Explore medal achievements and compare results across
+                participating countries.
+            </p>
+        </div>
+
+        <div class="highlight-card">
+            <h3>Athlete Performance</h3>
+            <p>
+                Examine athlete participation and individual achievements
+                across Olympic events.
+            </p>
+        </div>
+
+        <div class="highlight-card">
+            <h3>Sports & Events</h3>
+            <p>
+                Discover patterns across sports disciplines, events,
+                and competition categories.
+            </p>
+        </div>
+
+        <div class="highlight-card">
+            <h3>Data-Driven Insights</h3>
+            <p>
+                Use interactive visualizations to identify trends and
+                compare Olympic performances.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Global Olympics Analytics | Data Visualization Project</p>
+        <p>
+            Interactive dashboard powered by
+            <a href="https://public.tableau.com/"
+               target="_blank"
+               rel="noopener noreferrer">Tableau Public</a>.
+        </p>
+    </footer>
+
+</body>
+</html>
+`
